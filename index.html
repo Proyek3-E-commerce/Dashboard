@@ -13,30 +13,30 @@
       <aside>
          <div class="top">
            <div class="logo">
-             <h2>G <span class="danger">LOWSIE</span></h2>
+             <h2>A <span class="danger">DMIN</span></h2>
            </div>
            <div class="close" id="close_btn">
             <span class="material-symbols-sharp">close</span>
            </div>
          </div>
          <div class="sidebar">
-            <a href="#" id="nav-dashboard" class="active">
+            <a href="#" id="nav-dashboard" class="active" aria-label="Dashboard">
               <span class="material-symbols-sharp">grid_view</span>
               <h3>Dashboard</h3>
            </a>
-           <a href="#customers" id="nav-customers">
+           <a href="#customers" id="nav-customers" aria-label="Customers">
             <span class="material-symbols-sharp">person_outline</span>
             <h3>Customers</h3>
            </a>
-           <a href="#sellers" id="nav-sellers">
+           <a href="#sellers" id="nav-sellers" aria-label="Sellers">
               <span class="material-symbols-sharp">storefront</span>
               <h3>Sellers</h3>
            </a>
-           <a href="#products" id="nav-products">
+           <a href="#products" id="nav-products" aria-label="Products">
               <span class="material-symbols-sharp">receipt_long</span>
               <h3>Products</h3>
            </a>
-           <a href="#logout">
+           <a href="#logout" id="nav-logout" aria-label="Logout">
               <span class="material-symbols-sharp">logout</span>
               <h3>Logout</h3>
            </a>
@@ -45,7 +45,7 @@
 
       <!-- Main Dashboard Content -->
       <main id="dashboard-content">
-           <h1>Dashboard</h1>
+           <h1>Dashboard Admin</h1>
            <div class="date">
              <input type="date">
            </div>
@@ -199,33 +199,35 @@
 
    <script src="script.js"></script>
    <script>
-      // Switch sections based on navbar clicks
-      document.getElementById('nav-dashboard').addEventListener('click', function() {
-        document.getElementById('dashboard-content').style.display = 'block';
-        document.getElementById('customers-content').style.display = 'none';
-        document.getElementById('sellers-content').style.display = 'none';
-        document.getElementById('products-content').style.display = 'none';
+      const sections = {
+        dashboard: document.getElementById('dashboard-content'),
+        customers: document.getElementById('customers-content'),
+        sellers: document.getElementById('sellers-content'),
+        products: document.getElementById('products-content'),
+      };
+
+      function switchSection(sectionId) {
+        Object.values(sections).forEach(section => section.style.display = 'none');
+        sections[sectionId].style.display = 'block';
+      }
+
+      document.getElementById('nav-dashboard').addEventListener('click', () => switchSection('dashboard'));
+      document.getElementById('nav-customers').addEventListener('click', () => switchSection('customers'));
+      document.getElementById('nav-sellers').addEventListener('click', () => switchSection('sellers'));
+      document.getElementById('nav-products').addEventListener('click', () => switchSection('products'));
+
+      // Logout functionality
+      document.getElementById('nav-logout').addEventListener('click', () => {
+        alert('You have been logged out!');
+        window.location.reload();
       });
 
-      document.getElementById('nav-customers').addEventListener('click', function() {
-        document.getElementById('dashboard-content').style.display = 'none';
-        document.getElementById('customers-content').style.display = 'block';
-        document.getElementById('sellers-content').style.display = 'none';
-        document.getElementById('products-content').style.display = 'none';
-      });
-
-      document.getElementById('nav-sellers').addEventListener('click', function() {
-        document.getElementById('dashboard-content').style.display = 'none';
-        document.getElementById('customers-content').style.display = 'none';
-        document.getElementById('sellers-content').style.display = 'block';
-        document.getElementById('products-content').style.display = 'none';
-      });
-
-      document.getElementById('nav-products').addEventListener('click', function() {
-        document.getElementById('dashboard-content').style.display = 'none';
-        document.getElementById('customers-content').style.display = 'none';
-        document.getElementById('sellers-content').style.display = 'none';
-        document.getElementById('products-content').style.display = 'block';
+      // Theme toggler
+      const toggler = document.querySelector('.theme-toggler');
+      toggler.addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme-variables');
+        toggler.querySelector('span.active').classList.remove('active');
+        toggler.querySelector('span:not(.active)').classList.add('active');
       });
    </script>
 </body>

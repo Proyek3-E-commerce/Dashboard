@@ -1,56 +1,67 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const customersTable = document.querySelector(".customers-container tbody");
-  
-    customersTable.addEventListener("click", (event) => {
-      if (event.target.classList.contains("view")) {
-        handleView(event.target);
-      } else if (event.target.classList.contains("edit")) {
-        handleEdit(event.target);
-      } else if (event.target.classList.contains("delete")) {
-        handleDelete(event.target);
-      }
+// customers.js
+const customerForm = document.getElementById('customer-form');
+const customerTable = document.getElementById('customer-table').getElementsByTagName('tbody')[0];
+let editingRow = null;
+
+// Handle form submission to add or update customer
+customerForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('customer-name').value;
+    const email = document.getElementById('customer-email').value;
+    const phone = document.getElementById('customer-phone').value;
+
+    if (editingRow) {
+        // Update the existing row
+        editingRow.cells[0].innerText = name;
+        editingRow.cells[1].innerText = email;
+        editingRow.cells[2].innerText = phone;
+
+        // Reset editing mode
+        editingRow = null;
+        customerForm.reset();
+        document.querySelector('#customer-form button').innerText = 'Add Customer';
+    } else {
+        // Create new row
+        const newRow = customerTable.insertRow();
+        newRow.innerHTML = `
+            <td>${name}</td>
+            <td>${email}</td>
+            <td>${phone}</td>
+            <td>
+                <button class="edit">Edit</button>
+                <button class="delete">Delete</button>
+            </td>
+        `;
+
+        // Add event listeners for editing and deleting
+        addEventListeners(newRow);
+        customerForm.reset();
+    }
+});
+
+// Add event listeners to edit and delete buttons
+function addEventListeners(row) {
+    const editBtn = row.querySelector('.edit');
+    const deleteBtn = row.querySelector('.delete');
+
+    // Edit functionality
+    editBtn.addEventListener('click', function() {
+        const cells = row.getElementsByTagName('td');
+        document.getElementById('customer-name').value = cells[0].innerText;
+        document.getElementById('customer-email').value = cells[1].innerText;
+        document.getElementById('customer-phone').value = cells[2].innerText;
+
+        // Set the row being edited
+        editingRow = row;
+        document.querySelector('#customer-form button').innerText = 'Update Customer';
     });
-  
-    function handleView(button) {
-      const row = button.closest("tr");
-      const name = row.querySelector("td:nth-child(1)").textContent;
-      const email = row.querySelector("td:nth-child(2)").textContent;
-      const status = row.querySelector("td:nth-child(3)").textContent;
-  
-      alert(`View Customer\nName: ${name}\nEmail: ${email}\nStatus: ${status}`);
-    }
-  
-    function handleEdit(button) {
-      const row = button.closest("tr");
-      const nameCell = row.querySelector("td:nth-child(1)");
-      const emailCell = row.querySelector("td:nth-child(2)");
-  
-      const currentName = nameCell.textContent;
-      const currentEmail = emailCell.textContent;
-  
-      const newName = prompt("Edit Name:", currentName);
-      const newEmail = prompt("Edit Email:", currentEmail);
-  
-      if (newName !== null && newName.trim() !== "") {
-        nameCell.textContent = newName;
-      }
-  
-      if (newEmail !== null && newEmail.trim() !== "") {
-        emailCell.textContent = newEmail;
-      }
-  
-      alert("Customer information updated successfully.");
-    }
-  
-    function handleDelete(button) {
-      const row = button.closest("tr");
-      const name = row.querySelector("td:nth-child(1)").textContent;
-  
-      const confirmation = confirm(`Are you sure you want to delete ${name}?`);
-      if (confirmation) {
+
+    // Delete functionality
+    deleteBtn.addEventListener('click', function() {
         row.remove();
-        alert(`${name} has been deleted.`);
-      }
-    }
-  });
-  
+    });
+}
+
+// Initial setup: Add event listeners to existing rows (if any)
+[...customerTable.rows].forEach(addEventListeners);
