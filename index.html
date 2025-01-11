@@ -13,168 +13,69 @@
       <aside>
          <div class="top">
            <div class="logo">
-             <h2>A <span class="danger">DMIN</span></h2>
+             <h2>G <span class="danger">LOWSIE</span></h2>
            </div>
            <div class="close" id="close_btn">
             <span class="material-symbols-sharp">close</span>
            </div>
          </div>
          <div class="sidebar">
-            <a href="#" id="nav-dashboard" class="active" aria-label="Dashboard">
+            <a href="index.html" id="nav-dashboard" class="active">
               <span class="material-symbols-sharp">grid_view</span>
               <h3>Dashboard</h3>
            </a>
-           <a href="#customers" id="nav-customers" aria-label="Customers">
+           <a href="customers.html" id="nav-customers">
             <span class="material-symbols-sharp">person_outline</span>
             <h3>Customers</h3>
+          </a>
+          <a href="seller.html" id="nav-sellers">
+            <span class="material-symbols-sharp">storefront</span>
+            <h3>Sellers</h3>
+         </a>
+         <a href="product.html" id="nav-products">
+          <span class="material-symbols-sharp">receipt_long</span>
+          <h3>Products</h3>
+       </a>
            </a>
-           <a href="#sellers" id="nav-sellers" aria-label="Sellers">
-              <span class="material-symbols-sharp">storefront</span>
-              <h3>Sellers</h3>
-           </a>
-           <a href="#products" id="nav-products" aria-label="Products">
-              <span class="material-symbols-sharp">receipt_long</span>
-              <h3>Products</h3>
-           </a>
-           <a href="#logout" id="nav-logout" aria-label="Logout">
+           <a href="logout.html">
               <span class="material-symbols-sharp">logout</span>
               <h3>Logout</h3>
            </a>
          </div>
       </aside>
-
-      <!-- Main Dashboard Content -->
-      <main id="dashboard-content">
-           <h1>Dashboard Admin</h1>
-           <div class="date">
-             <input type="date">
-           </div>
-        <div class="insights">
-            <div class="sales">
-               <span class="material-symbols-sharp">trending_up</span>
-               <div class="middle">
-                 <div class="left">
-                   <h3>Total Sales</h3>
-                   <h1>Rp 25,024,000</h1>
-                 </div>
-                  <div class="progress">
-                      <svg>
-                         <circle r="30" cy="40" cx="40"></circle>
-                      </svg>
-                      <div class="number"><p>80%</p></div>
-                  </div>
+      <main id="content">
+         <h1>Dashboard</h1>
+         <div class="insights">
+            <div class="card">
+               <span class="material-symbols-sharp">grid_view</span>
+               <div class="content">
+                  <h3>Total Sections</h3>
+                  <p id="total-sections">4</p>
                </div>
-               <small>Last 24 Hours</small>
             </div>
-            <div class="expenses">
-                <span class="material-symbols-sharp">local_mall</span>
-                <div class="middle">
-                  <div class="left">
-                    <h3>Total Expenses</h3>
-                    <h1>Rp 15,000,000</h1>
-                  </div>
-                   <div class="progress">
-                       <svg>
-                          <circle r="30" cy="40" cx="40"></circle>
-                       </svg>
-                       <div class="number"><p>60%</p></div>
-                   </div>
-                </div>
-                <small>Last 24 Hours</small>
-             </div>
-        </div>
-      </main>
-
-      <!-- Customers Section -->
-      <main id="customers-content" style="display: none;">
-        <h1>Customers</h1>
-        <div class="add-customer">
-              <h2>Add New Customer</h2>
-              <form id="customer-form">
-                 <input type="text" id="customer-name" placeholder="Customer Name" required>
-                 <input type="email" id="customer-email" placeholder="Customer Email" required>
-                 <input type="text" id="customer-phone" placeholder="Customer Phone" required>
-                 <button type="submit">Add Customer</button>
-              </form>
-           </div>
-           <div class="customer-list">
-              <h2>Customer List</h2>
-              <table id="customer-table">
-                  <thead>
-                   <tr>
-                     <th>Name</th>
-                     <th>Email</th>
-                     <th>Phone</th>
-                     <th>Actions</th>
-                   </tr>
-                  </thead>
-                   <tbody>
-                      <!-- Customer rows will be dynamically inserted here -->
-                   </tbody>
-              </table>
-           </div>
-      </main>
-
-      <!-- Sellers Section -->
-      <main id="sellers-content" style="display: none;">
-        <h1>Sellers</h1>
-        <div class="add-seller">
-              <h2>Add New Seller</h2>
-              <form id="seller-form">
-                 <input type="text" id="seller-name" placeholder="Seller Name" required>
-                 <input type="email" id="seller-email" placeholder="Seller Email" required>
-                 <input type="text" id="seller-phone" placeholder="Seller Phone" required>
-                 <button type="submit">Add Seller</button>
-              </form>
-           </div>
-           <div class="seller-list">
-              <h2>Seller List</h2>
-              <table id="seller-table">
-                  <thead>
-                   <tr>
-                     <th>Name</th>
-                     <th>Email</th>
-                     <th>Phone</th>
-                     <th>Actions</th>
-                   </tr>
-                  </thead>
-                   <tbody>
-                      <!-- Seller rows will be dynamically inserted here -->
-                   </tbody>
-              </table>
-           </div>
-      </main>
-
-      <!-- Products Section -->
-      <main id="products-content" style="display: none;">
-        <h1>Products</h1>
-        <div class="add-product">
-              <h2>Add New Product</h2>
-              <form id="product-form">
-                 <input type="text" id="product-name" placeholder="Product Name" required>
-                 <input type="number" id="product-price" placeholder="Product Price" required>
-                 <input type="text" id="product-category" placeholder="Product Category" required>
-                 <button type="submit">Add Product</button>
-              </form>
-           </div>
-           <div class="product-list">
-              <h2>Product List</h2>
-              <table id="product-table">
-                  <thead>
-                   <tr>
-                     <th>Name</th>
-                     <th>Price</th>
-                     <th>Category</th>
-                     <th>Actions</th>
-                   </tr>
-                  </thead>
-                   <tbody>
-                      <!-- Product rows will be dynamically inserted here -->
-                   </tbody>
-              </table>
-           </div>
-      </main>
-
+            <div class="card">
+               <span class="material-symbols-sharp">person_outline</span>
+               <div class="content">
+                  <h3>Customers</h3>
+                  <p id="total-customers">120</p>
+               </div>
+            </div>
+            <div class="card">
+               <span class="material-symbols-sharp">storefront</span>
+               <div class="content">
+                  <h3>Sellers</h3>
+                  <p id="total-sellers">45</p>
+               </div>
+            </div>
+            <div class="card">
+               <span class="material-symbols-sharp">receipt_long</span>
+               <div class="content">
+                  <h3>Products</h3>
+                  <p id="total-products">320</p>
+               </div>
+            </div>
+         </div>
+    </main>
       <div class="right">
         <div class="top">
            <button id="menu_bar">
@@ -196,39 +97,6 @@
         </div>
       </div>
    </div>
-
-   <script src="script.js"></script>
-   <script>
-      const sections = {
-        dashboard: document.getElementById('dashboard-content'),
-        customers: document.getElementById('customers-content'),
-        sellers: document.getElementById('sellers-content'),
-        products: document.getElementById('products-content'),
-      };
-
-      function switchSection(sectionId) {
-        Object.values(sections).forEach(section => section.style.display = 'none');
-        sections[sectionId].style.display = 'block';
-      }
-
-      document.getElementById('nav-dashboard').addEventListener('click', () => switchSection('dashboard'));
-      document.getElementById('nav-customers').addEventListener('click', () => switchSection('customers'));
-      document.getElementById('nav-sellers').addEventListener('click', () => switchSection('sellers'));
-      document.getElementById('nav-products').addEventListener('click', () => switchSection('products'));
-
-      // Logout functionality
-      document.getElementById('nav-logout').addEventListener('click', () => {
-        alert('You have been logged out!');
-        window.location.reload();
-      });
-
-      // Theme toggler
-      const toggler = document.querySelector('.theme-toggler');
-      toggler.addEventListener('click', () => {
-        document.body.classList.toggle('dark-theme-variables');
-        toggler.querySelector('span.active').classList.remove('active');
-        toggler.querySelector('span:not(.active)').classList.add('active');
-      });
-   </script>
+   <script src="js/customers.js"></script>
 </body>
 </html>
