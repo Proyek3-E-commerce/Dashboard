@@ -273,6 +273,8 @@ main .insights > div .middle h1{
 
 main h1{
   color: var(--clr-dark);
+  display: flex;
+  justify-content: center;
 }
 main .insights h1{
   color: var(--clr-dark);
